@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common
+namespace NEC.Common
 {
     public abstract class ASingleton<T> : MonoBehaviour where T : Component
     {
