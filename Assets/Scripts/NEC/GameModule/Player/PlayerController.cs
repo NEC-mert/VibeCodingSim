@@ -10,5 +10,10 @@ namespace NEC.GameModule.Player
         {
             
         }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }
