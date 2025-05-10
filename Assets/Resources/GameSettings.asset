@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc0b664db2c4be5ba495617a194ee2e, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  mouseSensitivity: 4000
+  mouseSensitivity: 25
+  rotationLimit: {x: 40, y: 360}
+  moveSpeed: 10
+  gravity: -9.8
+  jumpHeight: 4.5
+  jumpMultiplier: 2.5
+  fallMultiplier: 2.5

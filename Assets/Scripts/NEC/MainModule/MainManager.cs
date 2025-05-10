@@ -9,5 +9,8 @@ namespace NEC.MainModule
     {
         [SerializeField] private GameManager gameManager;
         [SerializeField] private UIManager uiManager;
+        
+        public GameManager GameManager => gameManager;
+        public UIManager UIManager => uiManager;
     }
 }

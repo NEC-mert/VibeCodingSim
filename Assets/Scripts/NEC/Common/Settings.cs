@@ -13,7 +13,7 @@ namespace NEC.Common
             {
                 if (!_gameSettings)
                 {
-                    Resources.Load<GameSettings>("GameSettings");
+                    _gameSettings = Resources.Load<GameSettings>("GameSettings");
                 }
 
                 return _gameSettings;

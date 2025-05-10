@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace NEC.Common
@@ -433,6 +434,36 @@ namespace NEC.Common
             var color = graphic.color;
             color.a = 1f;
             graphic.color = color;
+        }
+
+        public static Vector3 SetX(this Vector3 vector, float x)
+        {
+            return new Vector3(x, vector.y, vector.z);
+        }
+
+        public static Vector3 SetY(this Vector3 vector, float y)
+        {
+            return new Vector3(vector.x, y, vector.z);
+        }
+
+        public static Vector3 SetZ(this Vector3 vector, float z)
+        {
+            return new Vector3(vector.x, vector.y, z);
+        }
+
+        public static Vector3 ResetX(this Vector3 vector)
+        {
+            return new Vector3(0f, vector.y, vector.z);
+        }
+
+        public static Vector3 ResetY(this Vector3 vector)
+        {
+            return new Vector3(vector.x, 0f, vector.z);
+        }
+
+        public static Vector3 ResetZ(this Vector3 vector)
+        {
+            return new Vector3(vector.x, vector.y, 0f);
         }
     }
 }
