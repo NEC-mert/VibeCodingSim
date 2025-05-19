@@ -9,8 +9,14 @@ namespace NEC.GameModule.Player
         [SerializeField] private CharacterController controller;
         [SerializeField] private LayerMask groundMask;
 
+        private Vector3 _position = Vector3.zero;
         private Vector3 _velocity = Vector3.zero;
         private Vector3 _zero = Vector3.zero;
+
+        private void Awake()
+        {
+            _position = transform.position;
+        }
 
         private void Start()
         {
@@ -23,16 +29,6 @@ namespace NEC.GameModule.Player
                 
                 sceneCamera.gameObject.SetActive(false);
             }
-        }
-
-        public void Initialize()
-        {
-            
-        }
-
-        public void Dispose()
-        {
-            
         }
 
         private void Update()
@@ -102,6 +98,11 @@ namespace NEC.GameModule.Player
             current = Vector3.SmoothDamp(current, target, ref _zero, 0.1f);
             playerCamera.transform.localRotation = Quaternion.Euler(current.ResetY());
             transform.rotation = Quaternion.Euler(current.ResetX());
+        }
+
+        public void ResetPlayer()
+        {
+            transform.position = _position;
         }
     }
 }
