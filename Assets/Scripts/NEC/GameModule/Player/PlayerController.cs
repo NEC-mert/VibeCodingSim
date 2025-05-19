@@ -12,6 +12,19 @@ namespace NEC.GameModule.Player
         private Vector3 _velocity = Vector3.zero;
         private Vector3 _zero = Vector3.zero;
 
+        private void Start()
+        {
+            var sceneCameras = FindObjectsByType<Camera>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var sceneCamera in sceneCameras)
+            {
+                if (ReferenceEquals(sceneCamera, playerCamera))
+                    continue;
+                
+                sceneCamera.gameObject.SetActive(false);
+            }
+        }
+
         public void Initialize()
         {
             
