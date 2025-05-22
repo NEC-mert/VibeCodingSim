@@ -109,9 +109,9 @@ MonoBehaviour:
     _FadeEnd: 60
     _BlackOffset: 0.5
     _ContoursIntensity: 0.8
-    _ContoursThickness: 0.5
+    _ContoursThickness: 1
     _ContoursElevationStrength: 1.5
-    _ContoursElevationSmoothness: 0
+    _ContoursElevationSmoothness: 0.5
     _ContoursDepressionStrength: 1.5
     _ContoursDepressionSmoothness: 0
     _CavityIntensity: 0.7
