@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace NEC.Common
 {
-    public abstract class AManager<T> : ASingleton<T> where T : Component
+    public abstract class AManager<T> : ASingleton<T>, IManager where T : Component
     {
         public bool IsInitialized { get; private set; }
 
