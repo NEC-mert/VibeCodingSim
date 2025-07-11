@@ -7,6 +7,7 @@ namespace NEC.GameModule.Player
     {
         [SerializeField] private Camera playerCamera;
         [SerializeField] private CharacterController controller;
+        [SerializeField] private BookController bookController;
         [SerializeField] private LayerMask groundMask;
 
         private Vector3 _position = Vector3.zero;
@@ -36,6 +37,12 @@ namespace NEC.GameModule.Player
             Cursor.visible = false;
             HandleMovement();
             HandleCameraRotation();
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                var state = bookController.isActiveAndEnabled;
+                bookController.gameObject.SetActive(!state);
+            }
         }
 
         private void HandleMovement()
