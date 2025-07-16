@@ -1,4 +1,6 @@
 using NEC.Common;
+using NEC.GameModule.Player.Inventory;
+using NEC.GameModule.Player.Items;
 using UnityEngine;
 
 namespace NEC.GameModule.Player
@@ -6,10 +8,12 @@ namespace NEC.GameModule.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private CharacterController controller;
-        [SerializeField] private BookController bookController;
+        [SerializeField] private CharacterController characterController;
+        [SerializeField] private PhoneController phoneController;
         [SerializeField] private LayerMask groundMask;
 
+        public ItemController ActiveItem { get; private set; }
+        
         private Vector3 _position = Vector3.zero;
         private Vector3 _velocity = Vector3.zero;
         private Vector3 _zero = Vector3.zero;
@@ -17,6 +21,7 @@ namespace NEC.GameModule.Player
         private void Awake()
         {
             _position = transform.position;
+            ActiveItem = phoneController;
         }
 
         private void Start()
@@ -37,18 +42,13 @@ namespace NEC.GameModule.Player
             Cursor.visible = false;
             HandleMovement();
             HandleCameraRotation();
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                var state = bookController.isActiveAndEnabled;
-                bookController.gameObject.SetActive(!state);
-            }
+            HandleItemInput();
         }
 
         private void HandleMovement()
         {
             var settings = Settings.GameSettings;
-            var isGrounded = controller.isGrounded;
+            var isGrounded = characterController.isGrounded;
             if (isGrounded && _velocity.y < 0)
             {
                 _velocity.y = -2f;
@@ -56,7 +56,7 @@ namespace NEC.GameModule.Player
             var moveSpeed = Input.GetAxis("Fire3") > 0 ? 1.5f * settings.MoveSpeed : settings.MoveSpeed;
             var move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
             move = Vector3.ClampMagnitude(move, 1f);
-            controller.Move(Time.deltaTime * moveSpeed * move);
+            characterController.Move(Time.deltaTime * moveSpeed * move);
             if (_velocity.y > 0 && !isGrounded)
             {
                 _velocity.y += settings.Gravity * settings.JumpMultiplier * Time.deltaTime;
@@ -69,7 +69,7 @@ namespace NEC.GameModule.Player
             {
                 _velocity.y += settings.Gravity * Time.deltaTime;
             }
-            controller.Move(Time.deltaTime * _velocity);
+            characterController.Move(Time.deltaTime * _velocity);
             if (isGrounded && Input.GetButtonDown("Jump"))
             {
                 _velocity.y = Mathf.Sqrt(settings.JumpHeight * -2f * settings.Gravity);
@@ -105,6 +105,11 @@ namespace NEC.GameModule.Player
             current = Vector3.SmoothDamp(current, target, ref _zero, 0.1f);
             playerCamera.transform.localRotation = Quaternion.Euler(current.ResetY());
             transform.rotation = Quaternion.Euler(current.ResetX());
+        }
+
+        private void HandleItemInput()
+        {
+            ActiveItem.HandleItemInput();
         }
 
         public void ResetPlayer()

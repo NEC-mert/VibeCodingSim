@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace NEC.GameModule.Player.Inventory
 {
-    /// <summary>
-    /// A ScriptableObject that defines an item's properties.
-    /// Create new items by right-clicking in the Project window -> Create -> Inventory/Item
-    /// </summary>
     [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
     public class ItemData : ScriptableObject
     {

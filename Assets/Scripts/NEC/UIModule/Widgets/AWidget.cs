@@ -2,7 +2,7 @@ using NEC.UIModule.Common;
 
 namespace NEC.UIModule.Widgets
 {
-    public class AWidget : UIBehaviour
+    public class AWidget : UIBase
     {
         
     }
